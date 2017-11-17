@@ -26,5 +26,3 @@
        if (!swap) break;
     }
  }
-
-int main() {return 0;}
