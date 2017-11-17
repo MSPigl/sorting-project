@@ -38,10 +38,10 @@ void printArray(int size, int* array)
 {
    int i;
    
-   print("{ ");
+   printf("{ ");
    for (i = 0; i < size - 1; i++)
    {
-      print("%d, ", array[i]);
+      printf("%d, ", array[i]);
    }
-   print("%d }\n", array[size - 1]);
+   printf("%d }\n", array[size - 1]);
 }
