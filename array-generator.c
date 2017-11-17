@@ -11,7 +11,7 @@ int* fillArray(int size, int* array)
    int r, i; 
    for (i = 0; i < size; i++)
    {
-      r = rand() % (range * range);
+      r = rand() % (size * size);
       array[i] = r;
    }
 }
