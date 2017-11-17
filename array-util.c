@@ -45,3 +45,5 @@ void printArray(int size, int* array)
    }
    printf("%d }\n", array[size - 1]);
 }
+
+int main() {return 0;}
