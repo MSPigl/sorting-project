@@ -71,16 +71,26 @@ void merge_down(int *arr, int n)
    }
 }
 
-void bitonicSort()
+void bitonicSort(int size, int* array)
 {
-   
+   int i, j;
+   for (i = 2; i <= size; i *= 2)
+   {
+      for (j = 0; j < size;) 
+      {
+         merge_up((array + j), i);
+         merge_down((array + j + i), i);
+         j += i * 2;
+      }
+   }
 }
 
 int main()
 {
    int array[] = {5, 7, 1, 6, 2, 20, 35, 3, 9, 10}; 
    
-   bubbleSort(10, array);
+   //bubbleSort(10, array);
+   bitonicSort(10, array);
    int i;
    for (i = 0; i < 10; i++)
    {
