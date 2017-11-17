@@ -33,3 +33,15 @@ int* makeArray(int size)
    
    return array;
 }
+
+void printArray(int size, int* array)
+{
+   int i;
+   
+   print("{ ");
+   for (i = 0; i < size - 1; i++)
+   {
+      print("%d, ", array[i]);
+   }
+   print("%d }\n", array[size - 1]);
+}
