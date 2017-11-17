@@ -21,7 +21,7 @@ int* fillArray(int size, int* array)
  */
 int* makeArray(int size)
 {
-   int* array = (int *)malloc(numElement * sizeof(int));
+   int* array = (int *)malloc(size * sizeof(int));
    fillArray(size, array);
    
    return array;
