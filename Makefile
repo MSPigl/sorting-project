@@ -5,7 +5,7 @@
 
 CFILES=array-util.c serial-sorting.c serial-testing.c
 OFILES=$(CFILES:.c=.o)
-CC = gcc
+CC=gcc
 
 serial-test:      $(OFILES)
       $(CC) -o serial-test $(OFILES)
