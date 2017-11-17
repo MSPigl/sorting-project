@@ -8,7 +8,7 @@ OFILES=$(CFILES:.c=.o)
 CC=gcc
 
 serial-test:      $(OFILES)
-      $(CC) -o serial-test $(OFILES)
+      $(CC) -o    serial-test $(OFILES)
 
 clean::
-      /bin/rm -f serial-test $(OFILES)
+      /bin/rm     -f    serial-test $(OFILES)
