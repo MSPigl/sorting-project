@@ -29,7 +29,7 @@
 
 int main()
 {
-   int[] array = {5, 7, 1, 6, 2, 20, 35, 3, 9, 10}; 
+   int array[] = {5, 7, 1, 6, 2, 20, 35, 3, 9, 10}; 
    
    bubbleSort(10, array);
    int i;
