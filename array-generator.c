@@ -1,3 +1,10 @@
+/*
+ * Functions to generate and fill an integer array to be used as input for sorting algorithms
+ * 
+ * Matt Pigliavento
+ * Siena College, Fall 2017
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -25,17 +32,4 @@ int* makeArray(int size)
    fillArray(size, array);
    
    return array;
-}
-
-int main()
-{
-   int* intArray = makeArray(100);
-   
-   int i;
-   printf("{ ");
-   for (i = 0; i < 10; i++)
-   {
-      printf("%d ", intArray[i]);
-   }
-   printf("}\n");
 }
