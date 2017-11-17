@@ -29,7 +29,7 @@ int* makeArray(int size)
 
 int main()
 {
-   int* intArray = makeArray(10);
+   int* intArray = makeArray(100);
    
    int i;
    printf("{ ");
