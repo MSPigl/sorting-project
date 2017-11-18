@@ -22,7 +22,7 @@
     }
     else 
     {
-       size = atoi(&argv[1]);
+       size = argv[1] - '0';
     }
   
     struct timeval start, stop;
