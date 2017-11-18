@@ -7,20 +7,20 @@
  
  #include <stdio.h>
  
- #include "array-util.c"
- #include "serial-sorting.c"
+ #include "array-util.h"
+ #include "serial-sorting.h"
  
  int main(int argc, char *argv)
  {
     int* myArray = makeArray(10);
     
     printf("Unsorted array: ");
-    printArray(10, myArray);
+    printArray(myArray, 10);
     
-    bubbleSort(10, myArray);
+    bubbleSort(myArray, 10);
     
     printf("Sorted array: ");
-    printArray(10, myArray);
+    printArray(myArray, 10);
  
     return 0;
  }
