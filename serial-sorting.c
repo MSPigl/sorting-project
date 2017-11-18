@@ -133,7 +133,7 @@ int main()
    
    //bubbleSort(10, array);
    //bitonicSort(10, array);
-   quicksort(array, 0 9);
+   quicksort(array, 0, 9);
    int i;
    for (i = 0; i < 10; i++)
    {
