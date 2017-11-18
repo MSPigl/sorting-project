@@ -43,7 +43,7 @@
     printf("Unsorted array: ");
     printArray(myArray, 10);
     
-    quickSort(myArray, 10);
+    quickSort(myArray, 0, 9);
     
     printf("Sorted array: ");
     printArray(myArray, 10);
@@ -55,7 +55,7 @@
     printf("Unsorted array: ");
     printArray(myArray, 10);
     
-    mergeSort(myArray, 10);
+    mergeSort(myArray, 0, 9);
     
     printf("Sorted array: ");
     printArray(myArray, 10);
