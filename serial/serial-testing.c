@@ -6,6 +6,7 @@
  */
  
  #include <stdio.h>
+ #include <stdlib.h>
  #include <sys/time.h>
  
  #include "timer.h"
@@ -21,7 +22,7 @@
     }
     else 
     {
-       size = argv[1];
+       size = atoi(argv[1]);
     }
   
     struct timeval start, stop;
