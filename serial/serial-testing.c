@@ -31,15 +31,15 @@
     
     printf("\n\nBubble sort: \n\n");
   
-    printf("Unsorted array: ");
-    printArray(myArray, size);
+    //printf("Unsorted array: ");
+    //printArray(myArray, size);
     
     gettimeofday(&start, NULL);
     bubbleSort(myArray, size);
     gettimeofday(&stop, NULL);
   
-    printf("Sorted array: ");
-    printArray(myArray, size);
+    //printf("Sorted array: ");
+    //printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
   
     myArray = makeArray(size);
