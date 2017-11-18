@@ -5,7 +5,7 @@
  * Siena College, Fall 2017
  */
  #include <stdio.h>
- void bubbleSort(int[] arr, int size)
+ void bubbleSort(int arr[], int size)
  {
     int i, j, swap;
     
@@ -27,7 +27,7 @@
     }
  }
 
-void merge_up(int[] arr, int n)
+void merge_up(int arr[], int n)
 {
    int step=n/2,i,j,k,temp;
    while (step > 0)
@@ -49,7 +49,7 @@ void merge_up(int[] arr, int n)
    }
 }
 
-void merge_down(int[] arr, int n)
+void merge_down(int arr[], int n)
 {
    int step=n/2,i,j,k,temp;
    while (step > 0)
@@ -71,7 +71,7 @@ void merge_down(int[] arr, int n)
    }
 }
 
-void bitonicSort(int[] arr, int size)
+void bitonicSort(int arr[], int size)
 {
    int i, j;
    for (i = 2; i <= size; i *= 2)
@@ -190,7 +190,8 @@ int main()
    
    //bubbleSort(10, array);
    //bitonicSort(10, array);
-   quickSort(array, 0, 9);
+   //quickSort(array, 0, 9);
+   mergeSort(array, 0, 9);
    int i;
    for (i = 0; i < 10; i++)
    {
