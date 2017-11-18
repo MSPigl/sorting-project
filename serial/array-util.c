@@ -29,7 +29,7 @@ int* fillArray(int* array, int size)
 int* makeArray(int size)
 {
    int* array = (int *)malloc(size * sizeof(int));
-   fillArray(size, array);
+   fillArray(array, size);
    
    return array;
 }
