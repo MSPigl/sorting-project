@@ -2,7 +2,7 @@
  * Header for array-util.c
  */
  
-int* fillArray(int size, int* array);
+int* fillArray(int* array, int size);
 
 int* makeArray(int size);
 
