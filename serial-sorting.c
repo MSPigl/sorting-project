@@ -5,7 +5,7 @@
  * Siena College, Fall 2017
  */
  #include <stdio.h>
- void bubbleSort(int size, int* array)
+ void bubbleSort(int[] arr, int size)
  {
     int i, j, swap;
     
@@ -13,11 +13,11 @@
     {
        for (j = 0; j < size - 1; j++)
        {
-          if (array[j] > array[j + 1])
+          if (arr[j] > arr[j + 1])
           {
-             int temp = array[j];
-             array[j] = array[j + 1];
-             array[j + 1] = temp;
+             int temp = arr[j];
+             arr[j] = arr[j + 1];
+             arr[j + 1] = temp;
              
              swap = 1;
           }
@@ -27,7 +27,7 @@
     }
  }
 
-void merge_up(int *arr, int n)
+void merge_up(int[] arr, int n)
 {
    int step=n/2,i,j,k,temp;
    while (step > 0)
@@ -49,7 +49,7 @@ void merge_up(int *arr, int n)
    }
 }
 
-void merge_down(int *arr, int n)
+void merge_down(int[] arr, int n)
 {
    int step=n/2,i,j,k,temp;
    while (step > 0)
@@ -71,15 +71,15 @@ void merge_down(int *arr, int n)
    }
 }
 
-void bitonicSort(int size, int* array)
+void bitonicSort(int[] arr, int size)
 {
    int i, j;
    for (i = 2; i <= size; i *= 2)
    {
       for (j = 0; j < size;) 
       {
-         merge_up((array + j), i);
-         merge_down((array + j + i), i);
+         merge_up((arr + j), i);
+         merge_down((arr + j + i), i);
          j += i * 2;
       }
    }
@@ -91,12 +91,7 @@ void swap(int* a, int* b)
     *a = *b;
     *b = t;
 }
- 
-/* This function takes last element as pivot, places
-   the pivot element at its correct position in sorted
-    array, and places all smaller (smaller than pivot)
-   to left of pivot and all greater elements to right
-   of pivot */
+
 int partition (int arr[], int low, int high)
 {
     int pivot = arr[high];
@@ -120,11 +115,73 @@ void quickSort(int arr[], int low, int high)
     {
         int index = partition(arr, low, high);
  
-        // Separately sort elements before
-        // partition and after partition
         quickSort(arr, low, index - 1);
         quickSort(arr, index + 1, high);
     }
+}
+
+void merge(int arr[], int left, int mid, int right)
+{
+    int i, j, k;
+    int n1 = mid - left + 1;
+    int n2 =  right - mid;
+
+    int L[n1];
+    int R[n2];
+ 
+    for (i = 0; i < n1; i++)
+    {
+        L[i] = arr[left + i];
+    }
+    for (j = 0; j < n2; j++)
+    {
+        R[j] = arr[mid + 1 + j];
+    }
+ 
+    i = 0;
+    j = 0; 
+    k = left; 
+    while (i < n1 && j < n2)
+    {
+        if (L[i] <= R[j])
+        {
+            arr[k] = L[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+ 
+    while (i < n1)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+ 
+    while (j < n2)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+void mergeSort(int arr[], int left, int right)
+{
+   if (left < right)
+   {
+      int mid = (left + right) / 2;
+    
+      mergeSort(arr, left, mid);
+      mergeSort(arr, mid + 1, right);
+    
+      merge(arr, left, mid, right);
+   }
 }
 
 int main()
