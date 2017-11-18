@@ -14,66 +14,76 @@
  
  int main(int argc, char *argv)
  {
+    int size;
+    if (argc != 2) 
+    {
+       size = 32;
+    }
+    else 
+    {
+       size = argv[1];
+    }
+  
     struct timeval start, stop;
     
-    int* myArray = makeArray(10);
+    int* myArray = makeArray(size);
     
     printf("\n\nBubble sort: \n\n");
   
     printf("Unsorted array: ");
-    printArray(myArray, 10);
+    printArray(myArray, size);
     
     gettimeofday(&start, NULL);
-    bubbleSort(myArray, 10);
+    bubbleSort(myArray, size);
     gettimeofday(&stop, NULL);
   
     printf("Sorted array: ");
-    printArray(myArray, 10);
+    printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
   
-    myArray = makeArray(10);
+    myArray = makeArray(size);
   
     printf("\n\nBitonic sort: \n\n");
   
     printf("Unsorted array: ");
-    printArray(myArray, 10);
+    printArray(myArray, size);
     
     gettimeofday(&start, NULL);
-    bitonicSort(myArray, 10);
+    bitonicSort(myArray, size);
     gettimeofday(&stop, NULL);  
   
     printf("Sorted array: ");
-    printArray(myArray, 10);
+    printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
     
-    myArray = makeArray(10);
+    myArray = makeArray(size);
   
     printf("\n\nQuicksort: \n\n");
   
     printf("Unsorted array: ");
-    printArray(myArray, 10);
+    printArray(myArray, size);
     
     gettimeofday(&start, NULL);
-    quickSort(myArray, 0, 9);
+    quickSort(myArray, 0, size - 1);
     gettimeofday(&stop, NULL);
   
     printf("Sorted array: ");
-    printArray(myArray, 10);
+    printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
   
-    myArray = makeArray(10);
+    myArray = makeArray(size);
   
     printf("\n\nMergesort: \n\n");
   
     printf("Unsorted array: ");
-    printArray(myArray, 10);
+    printArray(myArray, size);
     
     gettimeofday(&start, NULL);
-    mergeSort(myArray, 0, 9);
+    mergeSort(myArray, 0, size - 1);
     gettimeofday(&stop, NULL);  
   
     printf("Sorted array: ");
-    printArray(myArray, 10);
+    printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
  
     return 0;
