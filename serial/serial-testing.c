@@ -12,7 +12,7 @@
  #include "timer.h"
  #include "array-util.h"
  #include "serial-sorting.h"
- 
+
  int main(int argc, char **argv)
  {
     int size;
@@ -46,45 +46,45 @@
   
     printf("\n\nBitonic sort: \n\n");
   
-    printf("Unsorted array: ");
-    printArray(myArray, size);
+    //printf("Unsorted array: ");
+    //printArray(myArray, size);
     
     gettimeofday(&start, NULL);
     bitonicSort(myArray, size);
     gettimeofday(&stop, NULL);  
   
-    printf("Sorted array: ");
-    printArray(myArray, size);
+    //printf("Sorted array: ");
+    //printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
     
     myArray = makeArray(size);
   
     printf("\n\nQuicksort: \n\n");
   
-    printf("Unsorted array: ");
+    //printf("Unsorted array: ");
     printArray(myArray, size);
     
     gettimeofday(&start, NULL);
     quickSort(myArray, 0, size - 1);
     gettimeofday(&stop, NULL);
   
-    printf("Sorted array: ");
-    printArray(myArray, size);
+    //printf("Sorted array: ");
+    //printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
   
     myArray = makeArray(size);
   
     printf("\n\nMergesort: \n\n");
   
-    printf("Unsorted array: ");
-    printArray(myArray, size);
+    //printf("Unsorted array: ");
+    //printArray(myArray, size);
     
     gettimeofday(&start, NULL);
     mergeSort(myArray, 0, size - 1);
     gettimeofday(&stop, NULL);  
   
-    printf("Sorted array: ");
-    printArray(myArray, size);
+    //printf("Sorted array: ");
+    //printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
  
     return 0;
