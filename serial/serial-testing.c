@@ -13,7 +13,7 @@
  #include "array-util.h"
  #include "serial-sorting.h"
  
- int main(int argc, char *argv)
+ int main(int argc, char **argv)
  {
     int size;
     if (argc != 2) 
@@ -22,7 +22,7 @@
     }
     else 
     {
-       size = argv[1] - '0';
+       size = atoi(argv[1]);
     }
   
     struct timeval start, stop;
