@@ -14,10 +14,48 @@
  {
     int* myArray = makeArray(10);
     
+    printf("\n\nBubble sort: \n\n");
+  
     printf("Unsorted array: ");
     printArray(myArray, 10);
     
     bubbleSort(myArray, 10);
+    
+    printf("Sorted array: ");
+    printArray(myArray, 10);
+  
+    myArray = makeArray(10);
+  
+    printf("\n\nBitonic sort: \n\n");
+  
+    printf("Unsorted array: ");
+    printArray(myArray, 10);
+    
+    bitonicSort(myArray, 10);
+    
+    printf("Sorted array: ");
+    printArray(myArray, 10);
+  
+    myArray = makeArray(10);
+  
+    printf("\n\nQuicksort: \n\n");
+  
+    printf("Unsorted array: ");
+    printArray(myArray, 10);
+    
+    quickSort(myArray, 10);
+    
+    printf("Sorted array: ");
+    printArray(myArray, 10);
+  
+    myArray = makeArray(10);
+  
+    printf("\n\nMergesort: \n\n");
+  
+    printf("Unsorted array: ");
+    printArray(myArray, 10);
+    
+    mergeSort(myArray, 10);
     
     printf("Sorted array: ");
     printArray(myArray, 10);
