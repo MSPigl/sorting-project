@@ -184,6 +184,7 @@ void mergeSort(int arr[], int left, int right)
    }
 }
 
+/*
 int main()
 {
    int array[] = {5, 7, 1, 6, 2, 20, 35, 3, 9, 10}; 
@@ -199,3 +200,4 @@ int main()
    }
    printf("\n");
 }
+*/
