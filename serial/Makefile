@@ -3,7 +3,7 @@
 # Matt Pigliavento
 # Siena College, Fall 2017
 
-CFILES=array-util.c serial-sorting.c serial-testing.c
+CFILES=array-util.c serial-sorting.c serial-testing.c timer.c
 OFILES=$(CFILES:.c=.o)
 CC=gcc
 
