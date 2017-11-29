@@ -34,6 +34,7 @@ int main(int argc, char** argv)
 		{
 				//set up array
 				data = makeArray(size);
+				printf("Size is %d\n", size);
 		}
 		
 		chunk = size/numProcs;
