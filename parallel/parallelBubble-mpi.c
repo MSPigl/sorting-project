@@ -5,11 +5,11 @@
 #include "array-util.h"
 #include "serial-sorting.h"
 
-int main(int argc, char* argv)
+int main(int argc, char** argv)
 {
 		int myRank, numProcs;
 		int i, size, chunk;
-		int* myArray, data;
+		int* myArray, *data;
 		
 		MPI_Init(&argc, &argv);
 		
@@ -36,7 +36,7 @@ int main(int argc, char* argv)
 				data = makeArray(size);
 		}
 		
-		chunk = size/numProcs
+		chunk = size/numProcs;
 		myArray = (int *)malloc(sizeof(int) * chunk);
 		
 		MPI_Scatter(data, chunk, MPI_INT, &myArray, chunk, MPI_INT, 0, MPI_COMM_WORLD);
