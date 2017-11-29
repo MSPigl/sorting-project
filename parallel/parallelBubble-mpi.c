@@ -20,7 +20,7 @@ int main(int argc, char** argv)
 		}
 		printf("Casting argument to int\n");
 		size = atoi(argv[1]);
-		printf("Argument casted to int\n");
+		printf("Argument casted to int (%d)\n", size);
 		if (size % numProcs != 0)
 		{
 				fprintf(stderr, "numProcs must evenly divide array size");
