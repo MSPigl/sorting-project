@@ -18,9 +18,9 @@ int main(int argc, char** argv)
     		fprintf(stderr, "Usage: <array size>, %d were provided", argc - 1);
     		MPI_Abort(MPI_COMM_WORLD, 1);
 		}
-		
+		printf("Casting argument to int\n");
 		size = atoi(argv[1]);
-		
+		printf("Argument casted to int\n");
 		if (size % numProcs != 0)
 		{
 				fprintf(stderr, "numProcs must evenly divide array size");
