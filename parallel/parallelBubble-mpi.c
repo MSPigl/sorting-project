@@ -14,7 +14,7 @@ int main(int argc, char* argv)
 		MPI_Init(&argc, &argv);
 		
 		if (argc != 2)
-  	{
+		{
     		fprintf(stderr, "Usage: <array size>, %d were provided", argc - 1);
     		MPI_Abort(MPI_COMM_WORLD, 1);
 		}
@@ -27,8 +27,8 @@ int main(int argc, char* argv)
 				MPI_Abort(MPI_COMM_WORLD, 1);
 		}
 		
-  	MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
-  	MPI_Comm_size(MPI_COMM_WORLD, &numProcs);
+		MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
+		MPI_Comm_size(MPI_COMM_WORLD, &numProcs);
 		
 		if (myRank == 0)
 		{
