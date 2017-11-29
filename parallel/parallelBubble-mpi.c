@@ -3,11 +3,12 @@
 #include <mpi.h>
 
 #include "array-util.h"
+#include "serial-sorting.h"
 
 int main(int argc, char* argv)
 {
 		int myRank, numProcs;
-		int myStart, myEnd, size, myCount;
+		int i, size, chunk;
 		int* myArray, data;
 		
 		MPI_Init(&argc, &argv);
@@ -32,17 +33,23 @@ int main(int argc, char* argv)
 		if (myRank == 0)
 		{
 				//set up array
-				
 				data = makeArray(size);
 		}
 		
-		myArray = (int *)malloc(sizeof(int) * size/numProcs);
+		chunk = size/numProcs
+		myArray = (int *)malloc(sizeof(int) * chunk);
 		
-		MPI_Scatter(data, size/numProcs, MPI_INT, &myArray, size/numProcs, MPI_INT, 0, MPI_COMM_WORLD);
+		MPI_Scatter(data, chunk, MPI_INT, &myArray, chunk, MPI_INT, 0, MPI_COMM_WORLD);
 		
-		bubbleSort(myArray, size/numProcs);
+		bubbleSort(myArray, chunk);
 		
-		MPI_Scatter(&myArray, size/numProcs, MPI_INT, data, size/numProcs, MPI_INT, 0, MPI_COMM_WORLD);
+		MPI_Gather(&myArray, chunk, MPI_INT, data, chunk, MPI_INT, 0, MPI_COMM_WORLD);
+		
+		if (myRank == 0)
+		{
+				mergeSort(data, 0, size - 1);
+				printArray(data, size);
+		}
 		
 		MPI_Finalize();
 		return 0;
