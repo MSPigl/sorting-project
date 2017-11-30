@@ -12,7 +12,7 @@
 /*
  * Function to fill an array with pseudo-random integers
  */
-int* fillArray(int* array, int size)
+void fillArray(int* array, int size)
 {
    srand(time(NULL));
    int r, i; 
