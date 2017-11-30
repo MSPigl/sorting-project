@@ -238,7 +238,7 @@ int main(int argc, char * argv[]) {
 
         printArray(array, array_size);
 
-        printf("Time Elapsed (Sec): %f\n", timer_end - timer_start);
+        printf("Time Elapsed (Sec): %f\n", end - start);
     }
 
     // Reset the state of the heap from Malloc
@@ -248,4 +248,3 @@ int main(int argc, char * argv[]) {
     MPI_Finalize();
     return 0;
 }
-
