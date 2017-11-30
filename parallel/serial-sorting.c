@@ -11,7 +11,6 @@
     
     for (i = 0; i < size - 1; i++)
     {
-       printf("(%d, %d)\n", i, j);
        for (j = 0; j < size - 1; j++)
        {
           if (arr[j] > arr[j + 1])
