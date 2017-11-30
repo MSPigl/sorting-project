@@ -44,11 +44,11 @@ int main(int argc, char** argv)
 		}
 		
 		MPI_Barrier(MPI_COMM_WORLD);
-		printf("Scattering\n\n");
+		printf("%d | Scattering\n\n", myRank);
 		MPI_Scatter(data, chunk, MPI_INT, &myArray, chunk, MPI_INT, 0, MPI_COMM_WORLD);
-		printf("Sorting\n\n");
+		printf("%d | Sorting\n\n", myRank);
 		bubbleSort(myArray, chunk);
-		
+		printf("%d | Sorted\n\n", myRank);
 		MPI_Gather(&myArray, chunk, MPI_INT, data, chunk, MPI_INT, 0, MPI_COMM_WORLD);
 		
 		if (myRank == 0)
