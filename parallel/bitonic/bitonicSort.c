@@ -11,18 +11,16 @@
 #include <math.h>
 #include <mpi.h>    
 
-#define MASTER 0        // Who should do the final processing?
-#define OUTPUT_NUM 10   // Number of elements to display in output
+#include "array-util.h"
+#include "serial-sorting.c"
 
 int myRank, numProcs;
 int *array;
 int array_size;
 
-///////////////////////////////////////////////////
-// Main
-///////////////////////////////////////////////////
 int main(int argc, char * argv[]) {
     int i, j;
+    double start, end;
 
     // Initialization, get # of processes & this PID/rank
     MPI_Init(&argc, &argv);
@@ -37,22 +35,24 @@ int main(int argc, char * argv[]) {
     int dimensions = log2(numProcs);
 
     // Start Timer before starting first sort operation (first iteration)
-    if (process_rank == MASTER) {
-        printf("Number of Processes spawned: %d\n", num_processes);
-        timer_start = MPI_Wtime();
+    if (myRank == 0) {
+
+        start = MPI_Wtime();
     }
 
     // Sequential Sort
-    qsort(array, array_size, sizeof(int), ComparisonFunc);
-
+    //qsort(array, array_size, sizeof(int), ComparisonFunc);
+    quickSort(array, 0, array_size);
+    
     // Bitonic Sort follows
     for (i = 0; i < dimensions; i++) {
         for (j = i; j >= 0; j--) {
             // (window_id is even AND jth bit of process is 0)
             // OR (window_id is odd AND jth bit of process is 1)
-            if (((process_rank >> (i + 1)) % 2 == 0 && (process_rank >> j) % 2 == 0) || ((process_rank >> (i + 1)) % 2 != 0 && (process_rank >> j) % 2 != 0)) {
+            if (((myRank >> (i + 1)) % 2 == 0 && (myRank >> j) % 2 == 0) || ((myRank >> (i + 1)) % 2 != 0 && (myRank >> j) % 2 != 0)) {
                 CompareLow(j);
-            } else {
+            } 
+            else {
                 CompareHigh(j);
             }
         }
@@ -61,18 +61,10 @@ int main(int argc, char * argv[]) {
     // Blocks until all processes have finished sorting
     MPI_Barrier(MPI_COMM_WORLD);
 
-    if (process_rank == MASTER) {
-        timer_end = MPI_Wtime();
+    if (myRank == 0) {
+        end = MPI_Wtime();
 
-        printf("Displaying sorted array (only 10 elements for quick verification)\n");
-
-        // Print Sorting Results
-        for (i = 0; i < array_size; i++) {
-            if ((i % (array_size / OUTPUT_NUM)) == 0) {
-                printf("%d ",array[i]);
-            }
-        }
-        printf("\n\n");
+        printArray(array, array_size);
 
         printf("Time Elapsed (Sec): %f\n", timer_end - timer_start);
     }
@@ -90,16 +82,6 @@ int log2(int n)
   return log(n) / log(2);  
 }
 
-///////////////////////////////////////////////////
-// Comparison Function
-///////////////////////////////////////////////////
-int ComparisonFunc(const void * a, const void * b) {
-    return ( * (int *)a - * (int *)b );
-}
-
-///////////////////////////////////////////////////
-// Compare Low
-///////////////////////////////////////////////////
 void CompareLow(int j) {
     int i, min;
 
@@ -175,7 +157,8 @@ void CompareLow(int j) {
     }
 
     // Sequential Sort
-    qsort(array, array_size, sizeof(int), ComparisonFunc);
+    //qsort(array, array_size, sizeof(int), ComparisonFunc);
+    quickSort(array, array_size);
 
     // Reset the state of the heap from Malloc
     free(buffer_send);
@@ -184,10 +167,6 @@ void CompareLow(int j) {
     return;
 }
 
-
-///////////////////////////////////////////////////
-// Compare High
-///////////////////////////////////////////////////
 void CompareHigh(int j) {
     int i, max;
 
@@ -260,7 +239,8 @@ void CompareHigh(int j) {
     }
 
     // Sequential Sort
-    qsort(array, array_size, sizeof(int), ComparisonFunc);
+    //qsort(array, array_size, sizeof(int), ComparisonFunc);
+    quickSort(array, array_size);
 
     // Reset the state of the heap from Malloc
     free(buffer_send);
