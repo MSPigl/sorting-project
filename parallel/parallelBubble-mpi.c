@@ -46,12 +46,12 @@ int main(int argc, char** argv)
 		
 		MPI_Barrier(MPI_COMM_WORLD);
 		printf("%d | Scattering\n\n", myRank);
-		MPI_Scatter(data, chunk, MPI_INT, &myArray, chunk, MPI_INT, 0, MPI_COMM_WORLD);
+		MPI_Scatter(data, chunk, MPI_INT, myArray, chunk, MPI_INT, 0, MPI_COMM_WORLD);
 	        printf("%d | element at 0: %d\n", myRank, myArray[0]);
 		printf("%d | Sorting\n\n", myRank);
 		bubbleSort(myArray, chunk);
 		printf("%d | Sorted\n\n", myRank);
-		MPI_Gather(&myArray, chunk, MPI_INT, data, chunk, MPI_INT, 0, MPI_COMM_WORLD);
+		MPI_Gather(myArray, chunk, MPI_INT, data, chunk, MPI_INT, 0, MPI_COMM_WORLD);
 		
 		if (myRank == 0)
 		{
