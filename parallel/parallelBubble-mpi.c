@@ -44,9 +44,9 @@ int main(int argc, char** argv)
 		}
 		
 		MPI_Barrier(MPI_COMM_WORLD);
-		
+		printf("Scattering\n\n");
 		MPI_Scatter(data, chunk, MPI_INT, &myArray, chunk, MPI_INT, 0, MPI_COMM_WORLD);
-		
+		printf("Sorting\n\n");
 		bubbleSort(myArray, chunk);
 		
 		MPI_Gather(&myArray, chunk, MPI_INT, data, chunk, MPI_INT, 0, MPI_COMM_WORLD);
