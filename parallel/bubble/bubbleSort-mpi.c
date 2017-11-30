@@ -53,7 +53,10 @@ int main(int argc, char** argv)
 				mergeSort(data, 0, size - 1);
 				t2 = MPI_Wtime();
 				printf( "Elapsed time is %f\n", t2 - t1 ); 
+				free(data);
 		}
+	
+		free(myArray);
 		
 		MPI_Finalize();
 		return 0;
