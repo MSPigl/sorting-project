@@ -1,8 +1,8 @@
-# Makefile for serial sorting algorithms
+# Makefile for MPI implementation of bubble sort
 # Matt Pigliavento
 # Siena College, Fall 2017
 
-CFILES=array-util.c serial-sorting.c parallelBubble-mpi.c timer.c
+CFILES=array-util.c serial-sorting.c bubbleSort-mpi.c timer.c
 OFILES=$(CFILES:.c=.o)
 CC=mpicc
 
