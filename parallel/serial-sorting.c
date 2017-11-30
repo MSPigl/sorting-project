@@ -4,13 +4,14 @@
  * Matt Pigliavento
  * Siena College, Fall 2017
  */
- //#include <stdio.h>
+ #include <stdio.h>
  void bubbleSort(int arr[], int size)
  {
     int i, j, swap;
     
     for (i = 0; i < size - 1; i++)
     {
+       printf("(%d, %d)\n", i, j);
        for (j = 0; j < size - 1; j++)
        {
           if (arr[j] > arr[j + 1])
