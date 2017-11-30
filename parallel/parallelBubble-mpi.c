@@ -33,7 +33,7 @@ int main(int argc, char** argv)
 		}
 		
 		chunk = size/numProcs;
-		myArray = (int *)malloc(sizeof(int) * chunk);
+		myArray = (int *)calloc(chunk, sizeof(int));
 	
 		if (myRank == 0)
 		{
