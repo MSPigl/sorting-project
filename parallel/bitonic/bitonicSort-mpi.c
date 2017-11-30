@@ -18,65 +18,6 @@ int myRank, numProcs;
 int *array;
 int array_size;
 
-int main(int argc, char * argv[]) {
-    int i, j;
-    double start, end;
-
-    // Initialization, get # of processes & this PID/rank
-    MPI_Init(&argc, &argv);
-    MPI_Comm_size(MPI_COMM_WORLD, &numProcs);
-    MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
-
-    // Initialize Array for Storing Random Numbers
-    array_size = atoi(argv[1]) / numProcs;
-    array = makeArray(array_size);
-
-    // Cube Dimension
-    int dimensions = log2(numProcs);
-
-    // Start Timer before starting first sort operation (first iteration)
-    if (myRank == 0) {
-
-        start = MPI_Wtime();
-    }
-
-    // Sequential Sort
-    //qsort(array, array_size, sizeof(int), ComparisonFunc);
-    quickSort(array, 0, array_size);
-    
-    // Bitonic Sort follows
-    for (i = 0; i < dimensions; i++) {
-        for (j = i; j >= 0; j--) {
-            // (window_id is even AND jth bit of process is 0)
-            // OR (window_id is odd AND jth bit of process is 1)
-            if (((myRank >> (i + 1)) % 2 == 0 && (myRank >> j) % 2 == 0) || ((myRank >> (i + 1)) % 2 != 0 && (myRank >> j) % 2 != 0)) {
-                CompareLow(j);
-            } 
-            else {
-                CompareHigh(j);
-            }
-        }
-    }
-
-    // Blocks until all processes have finished sorting
-    MPI_Barrier(MPI_COMM_WORLD);
-
-    if (myRank == 0) {
-        end = MPI_Wtime();
-
-        printArray(array, array_size);
-
-        printf("Time Elapsed (Sec): %f\n", timer_end - timer_start);
-    }
-
-    // Reset the state of the heap from Malloc
-    free(array);
-
-    // Done
-    MPI_Finalize();
-    return 0;
-}
-
 int log2(int n)
 {
   return log(n) / log(2);  
@@ -158,7 +99,7 @@ void CompareLow(int j) {
 
     // Sequential Sort
     //qsort(array, array_size, sizeof(int), ComparisonFunc);
-    quickSort(array, array_size);
+    quickSort(array, 0, array_size);
 
     // Reset the state of the heap from Malloc
     free(buffer_send);
@@ -177,7 +118,7 @@ void CompareHigh(int j) {
         &max,                       // buffer max value
         1,                          // one item
         MPI_INT,                    // INT
-        process_rank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
+        myRank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
         0,                          // tag 0
         MPI_COMM_WORLD,             // default comm.
         MPI_STATUS_IGNORE           // ignore info about message received
@@ -190,7 +131,7 @@ void CompareHigh(int j) {
         &array[0],                  // send min
         1,                          // one item
         MPI_INT,                    // INT
-        process_rank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
+        myRank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
         0,                          // tag 0
         MPI_COMM_WORLD              // default comm.
     );
@@ -210,7 +151,7 @@ void CompareHigh(int j) {
         buffer_recieve,             // buffer message
         array_size,                 // whole array
         MPI_INT,                    // INT
-        process_rank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
+        myRank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
         0,                          // tag 0
         MPI_COMM_WORLD,             // default comm.
         MPI_STATUS_IGNORE           // ignore info about message receiveds
@@ -223,7 +164,7 @@ void CompareHigh(int j) {
         buffer_send,                // all items smaller than max value
         send_counter,               // # of values smaller than max
         MPI_INT,                    // INT
-        process_rank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
+        myRank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
         0,                          // tag 0
         MPI_COMM_WORLD              // default comm.
     );
@@ -240,7 +181,7 @@ void CompareHigh(int j) {
 
     // Sequential Sort
     //qsort(array, array_size, sizeof(int), ComparisonFunc);
-    quickSort(array, array_size);
+    quickSort(array, 0, array_size);
 
     // Reset the state of the heap from Malloc
     free(buffer_send);
@@ -248,3 +189,63 @@ void CompareHigh(int j) {
 
     return;
 }
+
+int main(int argc, char * argv[]) {
+    int i, j;
+    double start, end;
+
+    // Initialization, get # of processes & this PID/rank
+    MPI_Init(&argc, &argv);
+    MPI_Comm_size(MPI_COMM_WORLD, &numProcs);
+    MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
+
+    // Initialize Array for Storing Random Numbers
+    array_size = atoi(argv[1]) / numProcs;
+    array = makeArray(array_size);
+
+    // Cube Dimension
+    int dimensions = log2(numProcs);
+
+    // Start Timer before starting first sort operation (first iteration)
+    if (myRank == 0) {
+
+        start = MPI_Wtime();
+    }
+
+    // Sequential Sort
+    //qsort(array, array_size, sizeof(int), ComparisonFunc);
+    quickSort(array, 0, array_size);
+    
+    // Bitonic Sort follows
+    for (i = 0; i < dimensions; i++) {
+        for (j = i; j >= 0; j--) {
+            // (window_id is even AND jth bit of process is 0)
+            // OR (window_id is odd AND jth bit of process is 1)
+            if (((myRank >> (i + 1)) % 2 == 0 && (myRank >> j) % 2 == 0) || ((myRank >> (i + 1)) % 2 != 0 && (myRank >> j) % 2 != 0)) {
+                CompareLow(j);
+            } 
+            else {
+                CompareHigh(j);
+            }
+        }
+    }
+
+    // Blocks until all processes have finished sorting
+    MPI_Barrier(MPI_COMM_WORLD);
+
+    if (myRank == 0) {
+        end = MPI_Wtime();
+
+        printArray(array, array_size);
+
+        printf("Time Elapsed (Sec): %f\n", timer_end - timer_start);
+    }
+
+    // Reset the state of the heap from Malloc
+    free(array);
+
+    // Done
+    MPI_Finalize();
+    return 0;
+}
+
