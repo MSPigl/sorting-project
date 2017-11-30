@@ -47,7 +47,7 @@ int main(int argc, char** argv)
 		printf("%d | Scattering\n\n", myRank);
 		MPI_Scatter(data, chunk, MPI_INT, &myArray, chunk, MPI_INT, 0, MPI_COMM_WORLD);
 		printf("%d | Sorting\n\n", myRank);
-		bubbleSort(*myArray, chunk);
+		bubbleSort(myArray, chunk);
 		printf("%d | Sorted\n\n", myRank);
 		MPI_Gather(&myArray, chunk, MPI_INT, data, chunk, MPI_INT, 0, MPI_COMM_WORLD);
 		
