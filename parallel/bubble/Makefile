@@ -7,7 +7,7 @@ OFILES=$(CFILES:.c=.o)
 CC=mpicc
 
 serial-test:	$(OFILES)
-	$(CC) -o serial-test $(OFILES)
+	$(CC) -o bubbleSort $(OFILES)
 
 clean::
-	/bin/rm -f serial-test $(OFILES)
+	/bin/rm -f bubbleSort $(OFILES)
