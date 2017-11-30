@@ -18,7 +18,7 @@ int myRank, numProcs;
 int *array;
 int array_size;
 
-int log2(int n)
+double log2(double n)
 {
   return log(n) / log(2);  
 }
@@ -36,7 +36,7 @@ void CompareLow(int j) {
         &array[array_size - 1],     // entire array
         1,                          // one data item
         MPI_INT,                    // INT
-        process_rank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
+        myRank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
         0,                          // tag 0
         MPI_COMM_WORLD              // default comm.
     );
@@ -48,7 +48,7 @@ void CompareLow(int j) {
         &min,                       // buffer the message
         1,                          // one data item
         MPI_INT,                    // INT
-        process_rank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
+        myRank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
         0,                          // tag 0
         MPI_COMM_WORLD,             // default comm.
         MPI_STATUS_IGNORE           // ignore info about message received
@@ -71,7 +71,7 @@ void CompareLow(int j) {
         buffer_send,                // Send values that are greater than min
         send_counter,               // # of items sent
         MPI_INT,                    // INT
-        process_rank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
+        myRank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
         0,                          // tag 0
         MPI_COMM_WORLD              // default comm.
     );
@@ -81,7 +81,7 @@ void CompareLow(int j) {
         buffer_recieve,             // buffer the message
         array_size,                 // whole array
         MPI_INT,                    // INT
-        process_rank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
+        myRank ^ (1 << j),    // paired process calc by XOR with 1 shifted left j positions
         0,                          // tag 0
         MPI_COMM_WORLD,             // default comm.
         MPI_STATUS_IGNORE           // ignore info about message received
