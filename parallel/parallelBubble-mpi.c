@@ -22,15 +22,16 @@ int main(int argc, char** argv)
 		printf("Casting argument to int\n");
 		size = atoi(argv[1]);
 		printf("Argument casted to int (%d)\n", size);
+		printf("Setting up MPI variables\n");
+		MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
+		MPI_Comm_size(MPI_COMM_WORLD, &numProcs);
+		printf("Set up MPI variables\n");
 		if (size % numProcs != 0)
 		{
 				fprintf(stderr, "numProcs must evenly divide array size");
 				MPI_Abort(MPI_COMM_WORLD, 1);
 		}
-		printf("Setting up MPI variables\n");
-		MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
-		MPI_Comm_size(MPI_COMM_WORLD, &numProcs);
-		printf("Set up MPI variables\n");
+		
 		if (myRank == 0)
 		{
 				printf("Preparing to generate array\n");
