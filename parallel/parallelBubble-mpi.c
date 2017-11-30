@@ -32,6 +32,9 @@ int main(int argc, char** argv)
 				MPI_Abort(MPI_COMM_WORLD, 1);
 		}
 		
+		chunk = size/numProcs;
+		myArray = (int *)malloc(sizeof(int) * chunk);
+	
 		if (myRank == 0)
 		{
 				printf("Preparing to generate array\n");
@@ -40,8 +43,7 @@ int main(int argc, char** argv)
 				printf("Size is %d\n", size);
 		}
 		
-		chunk = size/numProcs;
-		myArray = (int *)malloc(sizeof(int) * chunk);
+		MPI_Barrier(MPI_COMM_WORLD);
 		
 		MPI_Scatter(data, chunk, MPI_INT, &myArray, chunk, MPI_INT, 0, MPI_COMM_WORLD);
 		
