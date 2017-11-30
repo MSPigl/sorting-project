@@ -2,7 +2,7 @@
 # Matt Pigliavento
 # Siena College, Fall 2017
 
-CFILES=array-util.c serial-sorting.c parallelBubble-mpi.c timer.c
+CFILES=array-util.c parallelBubble-mpi.c timer.c
 OFILES=$(CFILES:.c=.o)
 CC=mpicc
 
