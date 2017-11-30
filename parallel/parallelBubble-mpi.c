@@ -33,12 +33,9 @@ int main(int argc, char** argv)
 		
 		if (myRank == 0)
 		{
+				printf("Preparing to generate array\n");
 				//set up array
-				data = (int *)malloc(sizeof(int) * 12);//makeArray(size);
-				for (i = 0; i < 12; i++) 
-				{
-					data[i] = 12 - i; 
-				}
+				data = makeArray(size);
 				printf("Size is %d\n", size);
 		}
 		
