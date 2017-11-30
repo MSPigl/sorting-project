@@ -4,7 +4,30 @@
 #include <mpi.h>
 
 #include "array-util.h"
-#include "serial-sorting.h"
+//#include "serial-sorting.h"
+
+ void bubbleSort(int arr[], int size)
+ {
+    int i, j, swap;
+    
+    for (i = 0; i < size - 1; i++)
+    {
+       printf("(%d, %d)\n", i, j);
+       for (j = 0; j < size - 1; j++)
+       {
+          if (arr[j] > arr[j + 1])
+          {
+             int temp = arr[j];
+             arr[j] = arr[j + 1];
+             arr[j + 1] = temp;
+             
+             swap = 1;
+          }
+       }
+       
+       if (!swap) break;
+    }
+ }
 
 int main(int argc, char** argv)
 {
