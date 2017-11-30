@@ -41,7 +41,7 @@ int main(int argc, char** argv)
 				//set up array
 				data = makeArray(size);
 				printf("Size is %d\n", size);
-			 	printf("%d | element at 0: %d\n", myRank, myArray[0]);
+			 	printf("%d | element at 0: %d | element at 1: %d\n", myRank, data[0], data[1]);
 		}
 		
 		MPI_Barrier(MPI_COMM_WORLD);
