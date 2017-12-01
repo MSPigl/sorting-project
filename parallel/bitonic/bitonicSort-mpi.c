@@ -12,7 +12,7 @@
 #include <mpi.h>    
 
 #include "array-util.h"
-#include "serial-sorting.c"
+#include "serial-sorting.h"
 
 int myRank, numProcs;
 int *array;
