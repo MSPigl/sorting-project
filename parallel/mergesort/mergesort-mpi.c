@@ -45,8 +45,7 @@ int main(int argc, char** argv)
     mergeSort(data, 0, size - 1);
     
     end = MPI_Wtime();
-    
-    printArray(data, size);
+
     printf( "Elapsed time is %f\n", end - start ); 
     
     free(data);
