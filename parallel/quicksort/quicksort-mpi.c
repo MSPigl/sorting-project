@@ -36,16 +36,16 @@ int main(int argc, char** argv)
   
   MPI_Scatter(data, chunk, MPI_INT, myArray, chunk, MPI_INT, 0, MPI_COMM_WORLD);
   
-  quicksort(myArray, 0, chunk - 1);
+  quickSort(myArray, 0, chunk - 1);
   
   MPI_Gather(myArray, chunk, MPI_INT, data, chunk, MPI_INT, 0, MPI_COMM_WORLD);
   
   if (myRank == 0)
   {
-    quicksort(data, 0, size - 1);
+    quickSort(data, 0, size - 1);
     
     end = MPI_Wtime();
-
+    printArray(data, size);
     printf( "Elapsed time is %f\n", end - start ); 
     
     free(data);
