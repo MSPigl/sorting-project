@@ -198,6 +198,12 @@ int main(int argc, char * argv[]) {
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &numProcs);
     MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
+  
+    if (argc != 2)
+		{
+    		fprintf(stderr, "Usage: <array size>");
+    		MPI_Abort(MPI_COMM_WORLD, 1);
+		}
 
     // Initialize Array for Storing Random Numbers
     array_size = atoi(argv[1]) / numProcs;
