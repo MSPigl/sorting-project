@@ -45,7 +45,11 @@ int main(int argc, char** argv)
     quickSort(data, 0, size - 1);
     
     end = MPI_Wtime();
-    printArray(data, size);
+ifdef DEBUG
+{
+ printArray(data, size); 
+}
+endif;
     printf( "Elapsed time is %f\n", end - start ); 
     
     free(data);
