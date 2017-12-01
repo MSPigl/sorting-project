@@ -236,8 +236,6 @@ int main(int argc, char * argv[]) {
     if (myRank == 0) {
         end = MPI_Wtime();
 
-        printArray(array, array_size);
-
         printf("Time Elapsed (Sec): %f\n", end - start);
     }
 
