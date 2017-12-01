@@ -8,12 +8,11 @@
 int main(int argc, char** argv)
 {
   int myRank, numProcs;
-  int *data, int *myArray, size, chunk;
+  int *data, *myArray, size, chunk;
   double start, end;
   
-  MPI_INIT(&argc, &argv);
-	MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
-	MPI_Comm_size(MPI_COMM_WORLD, &numProcs);
+  MPI_Init(&argc, &argv);
+  
   
   if (argc != 2)
   {
@@ -21,6 +20,9 @@ int main(int argc, char** argv)
     MPI_Abort(MPI_COMM_WORLD, 1);
   }
   
+  MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
+  MPI_Comm_size(MPI_COMM_WORLD, &numProcs);	
+
   size = atoi(argv[1]);
   chunk = size / numProcs;
   
