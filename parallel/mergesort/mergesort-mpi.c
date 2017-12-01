@@ -8,7 +8,7 @@
 int main(int argc, char** argv)
 {
   int myRank, numProcs;
-  int *array, int *myArray, size;
+  int *data, int *myArray, size, chunk;
   double start, end;
   
   MPI_INIT(&argc, &argv);
