@@ -49,7 +49,7 @@ int main(int argc, char** argv)
 {
  printArray(data, size); 
 }
-#endif;
+#endif
     printf( "Elapsed time is %f\n", end - start ); 
     
     free(data);
