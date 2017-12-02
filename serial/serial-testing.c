@@ -41,7 +41,7 @@
     //printf("Sorted array: ");
     //printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
-  
+  /*
     myArray = makeArray(size);
   
     printf("\n\nBitonic sort: \n\n");
@@ -78,14 +78,14 @@
   
     //printf("Unsorted array: ");
     //printArray(myArray, size);
-    
+    /*
     gettimeofday(&start, NULL);
     mergeSort(myArray, 0, size - 1);
-    gettimeofday(&stop, NULL);  
+    gettimeofday(&stop, NULL); 
+    
+    
   
-    //printf("Sorted array: ");
-    //printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
- 
+ */
     return 0;
  }
