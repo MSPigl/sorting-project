@@ -58,6 +58,7 @@
     //printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
     */
+  /*
     myArray = makeArray(size);
   
     printf("\n\nQuicksort: \n\n");
@@ -72,7 +73,7 @@
     //printf("Sorted array: ");
     //printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
-  /*
+  */
     myArray = makeArray(size);
   
     printf("\n\nMergesort: \n\n");
@@ -87,6 +88,6 @@
     
   
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
- */
+ 
     return 0;
  }
