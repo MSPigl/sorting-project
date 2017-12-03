@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
   int* original_array;
   double t1, t2;
   
-	MPI_INIT(&argc, &argv);
+	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &world_size);
   
