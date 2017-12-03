@@ -50,7 +50,8 @@ int main(int argc, char** argv)
 		
 		if (myRank == 0)
 		{
-				mergeSort(data, 0, size - 1);
+				//mergeSort(data, 0, size - 1);
+				bubbleSort(data, size);
 				t2 = MPI_Wtime();
 				printf( "Elapsed time is %f\n", t2 - t1 ); 
 				free(data);
