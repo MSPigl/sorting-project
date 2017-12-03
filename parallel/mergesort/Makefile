@@ -2,7 +2,7 @@
 # Matt Pigliavento
 # Siena College, Fall 2017
 
-CFILES=array-util.c serial-sorting.c mergesort-mpi.c timer.c
+CFILES=array-util.c mergesort-mpi.c
 OFILES=$(CFILES:.c=.o)
 CC=mpicc
 
