@@ -63,7 +63,7 @@
     printf("\n\nQuicksort: \n\n");
   
     //printf("Unsorted array: ");
-    printArray(myArray, size);
+    //printArray(myArray, size);
     
     gettimeofday(&start, NULL);
     quickSort(myArray, 0, size - 1);
