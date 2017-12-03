@@ -28,7 +28,7 @@
     struct timeval start, stop;
     
     int* myArray = makeArray(size);
-    
+    /*
     printf("\n\nBubble sort: \n\n");
   
     //printf("Unsorted array: ");
@@ -41,7 +41,8 @@
     //printf("Sorted array: ");
     //printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
-  /*
+  */
+  
     myArray = makeArray(size);
   
     printf("\n\nBitonic sort: \n\n");
@@ -56,7 +57,7 @@
     //printf("Sorted array: ");
     //printArray(myArray, size);
     printf("Sorting took %f seconds\n", diffgettime(start,stop));
-    
+    /*
     myArray = makeArray(size);
   
     printf("\n\nQuicksort: \n\n");
